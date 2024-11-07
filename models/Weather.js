@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 
 const weatherSchema = new mongoose.Schema({
-  timestamp: {
-    type: Date,
-    default: Date.now
-  },
+  timestamp: Date,
   temperature: Number,
   humidity: Number,
   cloudiness: Number,
