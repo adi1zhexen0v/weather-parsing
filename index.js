@@ -2,6 +2,7 @@ import axios from "axios";
 import mongoose from "mongoose";
 import cron from "node-cron";
 import express from "express";
+import moment from "moment-timezone";
 import "dotenv/config";
 
 mongoose
@@ -12,7 +13,10 @@ mongoose
   );
 
 const weatherSchema = new mongoose.Schema({
-  timestamp: { type: Date, default: Date.now },
+  timestamp: {
+    type: Date,
+    default: () => moment().tz("Asia/Almaty").toDate()
+  },
   temperature: Number,
   humidity: Number,
   cloudiness: Number,
@@ -38,6 +42,7 @@ const fetchWeatherData = async () => {
 
     const { main, clouds, weather, wind } = response.data;
     const weatherData = {
+      timestamp: moment().tz("Asia/Almaty").toDate(), // Устанавливаем timestamp в GMT+5
       temperature: main.temp,
       humidity: main.humidity,
       cloudiness: clouds.all,
