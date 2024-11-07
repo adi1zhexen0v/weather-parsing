@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
 
 app.get("/weather", getAllData);
 app.post("/update", updateData);
-app.post("/fetch", fetchWeatherData);
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

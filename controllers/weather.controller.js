@@ -24,8 +24,11 @@ export const fetchWeatherData = async () => {
       pressure: main.pressure
     };
 
-    const weatherEntry = new Weather(weatherData);
-    await weatherEntry.save();
+    const existingEntry = await Weather.findOne({ timestamp: weatherData.timestamp });
+    if (!existingEntry) {
+      const weatherEntry = new Weather(weatherData);
+      await weatherEntry.save();
+    }
 
     console.log("Данные погоды успешно сохранены:", weatherData);
   } catch (error) {
