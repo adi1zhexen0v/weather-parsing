@@ -61,7 +61,9 @@ const fetchWeatherData = async () => {
   }
 };
 
-cron.schedule("*/10 * * * *", () => fetchWeatherData());
+cron.schedule("0,10,20,30,40,50 * * * *", () =>
+  fetchWeatherData()
+);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
