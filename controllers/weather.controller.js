@@ -51,7 +51,7 @@ export const updateData = async (req, res) => {
   }
 
   try {
-    const documents = await Weather.find();
+    const documents = await Weather.find({ lightLevel: { $exists: false } });
 
     const updates = documents.map(async (doc) => {
       const { lightLevel, pwm } = generateLightLevelAndPWM(doc);
