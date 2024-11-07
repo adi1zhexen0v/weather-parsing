@@ -9,7 +9,7 @@ mongoose
   .then(() => console.log("Подключено к MongoDB"))
   .catch((err) => console.error("Ошибка подключения к MongoDB:", err));
 
-cron.schedule("*/10 * * * *", () => fetchWeatherData());
+cron.schedule("0,10,20,30,40,50 * * * *", () => fetchWeatherData());
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,5 +22,5 @@ app.get("/weather", getAllData);
 app.post("/update", updateData);
 
 app.listen(PORT, () => {
-  console.log(`Сервер запущен на порту ${PORT}`);
+  console.log("Сервер запущен на порту " + PORT);
 });
